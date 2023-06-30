@@ -1,14 +1,13 @@
-import { Badge, Breadcrumb, Button, Dropdown, Input, MenuProps, Space, Table } from 'antd';
+import { Badge, Breadcrumb, Button, Card, Dropdown, Input, MenuProps, Space, Table } from 'antd';
 import React from 'react';
-import './divice.scss';
+import '../Home/Divice/divice.scss';
 
 import LeftMenu from '@view/Components/Leftmenu';
 
-import { CaretDownOutlined, SearchOutlined, PlusSquareFilled } from '@ant-design/icons';
+import { CaretDownOutlined, PlusSquareFilled, SearchOutlined } from '@ant-design/icons';
 import Header from '@view/Components/Header';
 import { ColumnsType } from 'antd/es/table';
 import { Link } from 'react-router-dom';
-import FixedCard from './../../Components/FixedCard';
 
 interface DataType {
   key: string;
@@ -31,8 +30,8 @@ const data: DataType[] = [
     status: 'error',
     statusWork: 'success',
     service: 'Khám tim mạch, Khám mắt,....',
-    des: <Link to="/detailDivice">chi tiết </Link>,
-    update: <Link to="/updateDivice">Cập nhật</Link>,
+    des: <a href="">chi tiết </a>,
+    update: <a href="">Cập nhật</a>,
   },
   {
     key: '1',
@@ -42,8 +41,8 @@ const data: DataType[] = [
     status: 'error',
     statusWork: 'success',
     service: 'Khám tim mạch, Khám mắt,....',
-    des: <Link to="/detailDivice">chi tiết </Link>,
-    update: <Link to="/updateDivice">Cập nhật</Link>,
+    des: <a href="">chi tiết </a>,
+    update: <a href="">Cập nhật</a>,
   },
   {
     key: '1',
@@ -53,8 +52,8 @@ const data: DataType[] = [
     status: 'error',
     statusWork: 'success',
     service: 'Khám tim mạch, Khám mắt,....',
-    des: <Link to="/detailDivice">chi tiết </Link>,
-    update: <Link to="/updateDivice">Cập nhật</Link>,
+    des: <a href="">chi tiết </a>,
+    update: <a href="">Cập nhật</a>,
   },
   {
     key: '1',
@@ -64,8 +63,8 @@ const data: DataType[] = [
     status: 'error',
     statusWork: 'success',
     service: 'Khám tim mạch, Khám mắt,....',
-    des: <Link to="/detailDivice">chi tiết </Link>,
-    update: <Link to="/updateDivice">Cập nhật</Link>,
+    des: <a href="">chi tiết </a>,
+    update: <a href="">Cập nhật</a>,
   },
 ];
 const columns: ColumnsType<DataType> = [
@@ -145,12 +144,15 @@ const menuProps = {
 const Divice = () => {
   return (
     <>
-      <div className="flex_home " style={{ background: '#EAEAEC' }}>
+      <div className="flex_home " style={{ background: '#EAEAEC', position: 'absolute' }}>
         <div className="menu " style={{ background: '#fff' }}>
           <LeftMenu />
         </div>
 
         <div className="w-full">
+          <span style={{ position: 'absolute', right: '100%', bottom: '50%' }}>
+            <PlusSquareFilled className="" style={{ color: '#ff9138' }} />
+          </span>
           <Header
             headerContent={
               <Breadcrumb className="custom-breadcrumb">
@@ -226,12 +228,14 @@ const Divice = () => {
                 rowClassName={(record, index) => (index % 2 === 0 ? 'even-row' : 'odd-row')}
               />
             </div>
-            <FixedCard
-              title={'Thêm mới'}
-              href={'/addDivice'}
-              icon={<PlusSquareFilled />}
-              className={undefined}
-            />
+            <Link to={'/addDivice'}>
+              <Card className="fixed-card text-center">
+                <PlusSquareFilled style={{ fontSize: 24, marginBottom: 10 }} />
+                <p className="fw-bold" style={{ fontSize: 9 }}>
+                  Thêm thiết bị
+                </p>
+              </Card>
+            </Link>
           </div>
         </div>
       </div>

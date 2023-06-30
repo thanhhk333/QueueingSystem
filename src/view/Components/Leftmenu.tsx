@@ -17,6 +17,8 @@ import { routerHome } from '@view/Home/router';
 import { routerDivice } from '@view/Home/Divice/router';
 import { routerLogin } from '@view/Auth/Login/router';
 import { routerProfile } from '@view/Auth/Profiles/router';
+import { routerService } from '@view/Home/Service/router';
+import { routerPro } from '@view/Home/Progressitive/router';
 
 const LeftMenu: React.FC = () => {
   const [activeKey, setActiveKey] = useState<string>('2');
@@ -49,10 +51,10 @@ const LeftMenu: React.FC = () => {
       navigate(routerDivice.path);
     }),
     getItem('Dịch vụ', '3', <CommentOutlined />, () => {
-      navigate(routerProfile.path);
+      navigate(routerService.path);
     }),
     getItem('Cấp số', '4', <GroupOutlined />, () => {
-      navigate(routerHome.path);
+      navigate(routerPro.path);
     }),
     getItem('Báo cáo', '5', <FileTextOutlined />, () => {
       navigate(routerHome.path);

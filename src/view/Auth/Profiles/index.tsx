@@ -12,7 +12,10 @@ import Header from '@view/Components/Header';
 const Proflie = () => {
   return (
     <>
-      <div className="flex_home" style={{ background: '#EAEAEC', minHeight: '100 vh' }}>
+      <div
+        className="flex_home"
+        style={{ background: 'rgba(246, 246, 246, 1)', minHeight: '100 vh' }}
+      >
         <div className="menu " style={{ background: '#fff' }}>
           <LeftMenu />
         </div>
@@ -41,7 +44,10 @@ const Proflie = () => {
                     labelCol={{ span: 20 }}
                     wrapperCol={{ span: 22 }}
                   >
-                    <Input placeholder="Thanh" style={{ background: '#EAEAEC', fontSize: 12 }} />
+                    <Input
+                      placeholder="Thanh"
+                      style={{ background: 'rgba(246, 246, 246, 1)', fontSize: 12 }}
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Số điện thoại"
@@ -50,13 +56,13 @@ const Proflie = () => {
                   >
                     <Input
                       placeholder="033218321"
-                      style={{ background: '#EAEAEC', fontSize: 12 }}
+                      style={{ background: 'rgba(246, 246, 246, 1)', fontSize: 12 }}
                     />
                   </Form.Item>
                   <Form.Item label="Email:" labelCol={{ span: 20 }} wrapperCol={{ span: 22 }}>
                     <Input
                       placeholder="thanhhk333@gmail.com"
-                      style={{ background: '#EAEAEC', fontSize: 12 }}
+                      style={{ background: 'rgba(246, 246, 246, 1)', fontSize: 12 }}
                     />
                   </Form.Item>
                 </Form>
@@ -68,13 +74,22 @@ const Proflie = () => {
                     labelCol={{ span: 20 }}
                     wrapperCol={{ span: 22 }}
                   >
-                    <Input placeholder="thanhx" style={{ background: '#EAEAEC', fontSize: 12 }} />
+                    <Input
+                      placeholder="thanhx"
+                      style={{ background: 'rgba(246, 246, 246, 1)', fontSize: 12 }}
+                    />
                   </Form.Item>
                   <Form.Item label="Mật khẩu" labelCol={{ span: 20 }} wrapperCol={{ span: 22 }}>
-                    <Input placeholder="4324" style={{ background: '#EAEAEC', fontSize: 12 }} />
+                    <Input
+                      placeholder="4324"
+                      style={{ background: 'rgba(246, 246, 246, 1)', fontSize: 12 }}
+                    />
                   </Form.Item>
                   <Form.Item label="Vai trò" labelCol={{ span: 20 }} wrapperCol={{ span: 22 }}>
-                    <Input placeholder="IT" style={{ background: '#EAEAEC', fontSize: 12 }} />
+                    <Input
+                      placeholder="IT"
+                      style={{ background: 'rgba(246, 246, 246, 1)', fontSize: 12 }}
+                    />
                   </Form.Item>
                 </Form>
               </Col>

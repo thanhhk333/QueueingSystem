@@ -20,22 +20,27 @@ const Login = () => {
   const { login } = authenticationPresenter;
   const loginByAccount = useSingleAsync(login);
   const [errorStatus, setErrorStatus] = useState('');
+  const [submitting, setSubmitting] = useState(false); // Biến trạng thái để xác định người dùng đã nhấn nút Submit chưa
 
   const onSubmitAccount = (values: any) => {
     const { email, password } = values;
     const loginData = { email, password };
     navigate('/');
   };
-  // loginByAccount
-  // ?.execute(loginData)
-  // ?.then(() => {
-  //   navigate('/');
-  // })
-  // .catch(err => {
-  //   setErrorStatus(formatMessage('Sai tên đăng nhập hoặc mật khẩu'));
 
-  //});
-  // };
+  const validateEmail = (_: any, value: string) => {
+    // Sử dụng biểu thức chính quy để kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (submitting && value && !emailRegex.test(value)) {
+      return Promise.reject('Email không hợp lệ');
+    }
+    return Promise.resolve();
+  };
+
+  const handleFormSubmit = (values: any) => {
+    setSubmitting(true); // Đánh dấu là người dùng đã nhấn nút Submit
+    onSubmitAccount(values);
+  };
 
   return (
     <>
@@ -46,12 +51,13 @@ const Login = () => {
         <div className="auth-wrapper">
           <div className="content-form">
             <Logo />
-            <Form name="normal_login" className="login-form" onFinish={onSubmitAccount}>
+            <Form name="normal_login" className="login-form" onFinish={handleFormSubmit}>
               <Form.Item
                 name="email"
                 rules={[
                   {
                     required: true,
+                    validator: validateEmail, // Thêm validator kiểm tra email
                   },
                 ]}
               >

@@ -1,0 +1,52 @@
+.ant-menu .ant-menu-item:hover {
+  background-color: #fff2e7 !important;
+  color: #ff9138 !important;
+}
+
+.ant-menu .ant-menu-item-selected {
+  background-color: #ff7506 !important;
+  color: white !important;
+}
+
+.menu-item {
+  text-decoration: none !important;
+  display: flex !important;
+}
+
+a:hover {
+  color: #ff9138 !important;
+}
+
+.menu-item:hover {
+  background-color: #fff2e7 !important;
+  color: #ff9138 !important;
+}
+
+.ant-menu-submenu-title:hover {
+  background-color: #fff2e7 !important;
+  color: #ff9138 !important;
+}
+
+.ant-menu-submenu-popup .ant-menu-item:hover {
+  background-color: #fff2e7 !important;
+  color: #ff9138 !important;
+}
+.slide {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu-items {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#logout {
+  margin-top: 200px;
+}
+
+.menu-item {
+  margin-bottom: 10px;
+}

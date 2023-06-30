@@ -23,21 +23,6 @@ const NewPassword = () => {
   const [errorStatus, setErrorStatus] = useState('');
 
   const onSubmitAccount = (values: any) => {
-    // if (values.remember) {
-    //   window.localStorage.setItem('remember-me', '1');
-    // } else {
-    //   window.localStorage.removeItem('remember-me');
-    //   window.sessionStorage.setItem('remember-me', '1');
-    // }
-    // document.cookie = `remember_me=${true}; SameSite=None; Secure`;
-    // loginByAccount
-    //   ?.execute(values)
-    //   ?.then(() => {
-    //     navigate('/');
-    //   })
-    //   .catch(err => {
-    //     setErrorStatus(intl.formatMessage({ id: err?.response?.data?.message }));
-    //   });
     navigate('/profile');
   };
 
@@ -56,15 +41,12 @@ const NewPassword = () => {
               initialValues={{ remember: true }}
               onFinish={onSubmitAccount}
             >
-              <Form.Item
-                name="username"
-                rules={[{ required: true, message: formatMessage('login.required.username') }]}
-              >
+              <Form.Item>
                 <h1 className="m-10 flex justify-center text-3xl">Đặt lại mật khẩu mới</h1>
                 <Input
                   type="password"
                   prefix={<Lock className="site-form-item-icon" />}
-                  placeholder="Nhập lại mật khẩu"
+                  placeholder="Nhập  mật khẩu mới"
                 />
               </Form.Item>
               <Form.Item

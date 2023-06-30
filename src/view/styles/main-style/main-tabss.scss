@@ -1,0 +1,68 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.layout {
+  height: 100%;
+}
+
+.layout-content {
+  overflow: auto;
+}
+
+.fixed-card {
+  position: fixed;
+  bottom: 50;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #fff2e7;
+  color: #ff7506;
+}
+
+.fixed-card-service {
+  position: fixed;
+  bottom: 50;
+  right: 0;
+  width: 100px;
+  height: 200px;
+  background-color: #fff2e7;
+  color: #ff7506;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-thead > tr > td {
+  background-color: #ff9138 !important;
+  color: #fff !important;
+}
+
+.ant-pagination-item-active a {
+  background-color: #ff7506;
+  color: white !important;
+  border-color: #ff7506 !important;
+}
+
+.custom-color {
+  color: #ff7506;
+}
+
+.custom-input-container {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  position: absolute;
+  right: 8px;
+  bottom: 0;
+}
+
+.blue-checkbox .ant-checkbox-inner {
+  border-color: blue;
+}
