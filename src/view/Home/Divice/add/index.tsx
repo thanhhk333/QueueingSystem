@@ -1,16 +1,43 @@
 import React from 'react';
-import { Breadcrumb, Button, Card, Form, Input, Layout, Select } from 'antd';
+import {
+  Breadcrumb,
+  Button,
+  Card,
+  Col,
+  Dropdown,
+  Form,
+  Input,
+  Layout,
+  MenuProps,
+  Row,
+  Space,
+} from 'antd';
 import LeftMenu from '@view/Components/Leftmenu';
 import Header from '@view/Components/Header';
+import { CaretDownOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
 
 function AddDevices() {
+  const items: MenuProps['items'] = [
+    {
+      label: 'Kiosk',
+      key: '1',
+    },
+    {
+      label: 'Display counter',
+      key: '2',
+    },
+  ];
+
+  const menuProps = {
+    items,
+  };
   return (
     <div className="d-flex">
       <LeftMenu />
       <Layout>
-        <Content style={{}}>
+        <Content>
           <div className="container">
             <div className="row ">
               <div className="col ">
@@ -27,109 +54,122 @@ function AddDevices() {
                 />
               </div>
             </div>
-            <div className="pt-5">
-              <h4 style={{ color: '#FF7506' }}>Quản lý thiết bị</h4>
-            </div>
+
+            <h2 style={{ color: '#FF7506' }}>Quản lý thiết bị</h2>
+
             <div className="mt-3">
               <Card style={{ width: 1140 }}>
-                <h6 style={{ color: '#FF7506' }}>Thông tin thiết bị</h6>
+                <h4 style={{ color: '#FF7506' }}>Thông tin thiết bị</h4>
                 <Form className="mt-3">
-                  <div className="row">
-                    <div className="col-6">
-                      <label htmlFor="" className="mb-2">
-                        Mã thiết bị: <span style={{ color: '#FF7506' }}>*</span>
-                      </label>
-                      <Form.Item className="">
-                        <Input placeholder="Nhập mã thiết bị" />
-                      </Form.Item>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="" className="mb-2">
-                        Loại thiết bị: <span style={{ color: '#FF7506' }}>*</span>
+                  <Row gutter={[16, 16]}>
+                    <Col span={12}>
+                      <label className="mb-2">
+                        Họ tên: <span className="text-danger">*</span>
                       </label>
                       <Form.Item>
-                        <Select defaultValue="all">
-                          <Select.Option value="all">Chọn loại thiết bị</Select.Option>
-                          <Select.Option value="connected">Kết nối</Select.Option>
-                          <Select.Option value="disconnected">Mất kết nối</Select.Option>
-                        </Select>
+                        <Input placeholder="Nhập mã thiết bị" />
                       </Form.Item>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="" className="mb-2">
-                        Tên thiết bị: <span style={{ color: '#FF7506' }}>*</span>
+                    </Col>
+                    <Col span={12}>
+                      <label className="mb-2">
+                        Loại thiết bị: <span className="text-danger">*</span>
                       </label>
-                      <Form.Item className="">
+                      <Form.Item>
+                        <Dropdown menu={menuProps}>
+                          <Button
+                            style={{
+                              width: '100%',
+                              fontSize: '16px',
+                              lineHeight: '16px',
+                              padding: '10px, 12px, 10px, 12px',
+                              color: 'black',
+                              borderRadius: '8px',
+                            }}
+                            size="middle"
+                          >
+                            <Space className="flex justify-between mx-3">
+                              Kiosk
+                              <CaretDownOutlined style={{ color: '#ff9138' }} />
+                            </Space>
+                          </Button>
+                        </Dropdown>
+                      </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                      <label className="mb-2">
+                        Tên thiết bị: <span className="text-danger">*</span>
+                      </label>
+                      <Form.Item>
                         <Input placeholder="Nhập tên thiết bị" />
                       </Form.Item>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="" className="mb-2">
-                        Tên đăng nhập: <span style={{ color: '#FF7506' }}>*</span>
+                    </Col>
+                    <Col span={12}>
+                      <label className="mb-2">
+                        Tên đăng nhập: <span className="text-danger">*</span>
                       </label>
-                      <Form.Item className="">
+                      <Form.Item>
                         <Input placeholder="Nhập tài khoản" />
                       </Form.Item>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="" className="mb-2">
-                        Địa chỉ IP: <span style={{ color: '#FF7506' }}>*</span>
+                    </Col>
+                    <Col span={12}>
+                      <label className="mb-2">
+                        Địa chỉ IP: <span className="text-danger">*</span>
                       </label>
-                      <Form.Item className="">
+                      <Form.Item>
                         <Input placeholder="Nhập địa chỉ IP" />
                       </Form.Item>
-                    </div>
-                    <div className="col-6">
-                      <label htmlFor="" className="mb-2">
-                        Mật khẩu: <span style={{ color: '#FF7506' }}>*</span>
+                    </Col>
+                    <Col span={12}>
+                      <label className="mb-2">
+                        Mật khẩu: <span className="text-danger">*</span>
                       </label>
-                      <Form.Item className="">
+                      <Form.Item>
                         <Input placeholder="Nhập mật khẩu" />
                       </Form.Item>
-                    </div>
-                    <div className="col-12">
-                      <label htmlFor="" className="mb-2">
-                        Dịch vụ sử dụng: <span style={{ color: '#FF7506' }}>*</span>
+                    </Col>
+                    <Col span={24}>
+                      <label className="mb-2">
+                        Dịch vụ sử dụng: <span className="text-danger">*</span>
                       </label>
-                      <Form.Item className="">
+                      <Form.Item>
                         <Input placeholder="Nhập dịch vụ sử dụng" />
                       </Form.Item>
-                    </div>
-                    <div className="col-4 mb-5 pb-1 text-right">
-                      <span style={{ color: '#FF7506' }}>*</span>{' '}
+                    </Col>
+                    <Col span={24} className="text-right">
+                      <span className="text-danger">*</span>
                       <small>Là trường hợp thông tin bắt buộc</small>
-                    </div>
-                  </div>
+                    </Col>
+                  </Row>
                 </Form>
               </Card>
-              <div className="col-6 text-center offset-3 mt-3">
-                <Form.Item>
-                  <Button
-                    htmlType="submit"
-                    type="primary"
-                    className="normal-button mr-5 "
-                    style={{
-                      backgroundColor: 'white',
-                      color: '#FF9138',
-                      border: '1px solid #FF9138',
-                    }}
-                  >
-                    Hủy
-                  </Button>
-                  <Button
-                    htmlType="submit"
-                    type="primary"
-                    className="normal-button"
-                    style={{
-                      backgroundColor: '#FF9138',
-                      color: '#fff',
-                      border: '1px solid #FF9138',
-                    }}
-                  >
-                    Thêm thiết bị
-                  </Button>
-                </Form.Item>
-              </div>
+            </div>
+            <div className="col-6 text-center offset-3 mt-3">
+              <Form.Item>
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  className="normal-button mr-5 "
+                  style={{
+                    backgroundColor: 'white',
+                    color: '#FF9138',
+                    border: '1px solid #FF9138',
+                  }}
+                >
+                  Hủy
+                </Button>
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  className="normal-button"
+                  style={{
+                    backgroundColor: '#FF9138',
+                    color: '#fff',
+                    border: '1px solid #FF9138',
+                  }}
+                >
+                  Thêm thiết bị
+                </Button>
+              </Form.Item>
             </div>
           </div>
         </Content>

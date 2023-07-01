@@ -210,11 +210,7 @@ const Divice = () => {
               />
             </div>
             <div className="" style={{ width: '1080px' }}>
-              <Table
-                columns={columns}
-                dataSource={data}
-                rowClassName={(record, index) => (index % 2 === 0 ? 'even-row' : 'odd-row')}
-              />
+              <Table columns={columns} dataSource={data} className="table-striped" />
             </div>
           </div>
         </div>

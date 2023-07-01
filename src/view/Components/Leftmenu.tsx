@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Auth/styles.scss';
 import {
   AppstoreOutlined,
@@ -10,20 +10,23 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Button, Menu, Row } from 'antd';
+import { Button, Menu } from 'antd';
 import Logo from '@view/Auth/components/Logo';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { routerHome } from '@view/Home/router';
 import { routerDivice } from '@view/Home/Divice/router';
-import { routerLogin } from '@view/Auth/Login/router';
-import { routerProfile } from '@view/Auth/Profiles/router';
 import { routerService } from '@view/Home/Service/router';
 import { routerPro } from '@view/Home/Progressitive/router';
+import { routerReport } from '@view/Home/Report/router';
+import { routerUser } from '@view/Home/Management/User/router';
+import { routerRoleManagement } from '@view/Home/Management/Role/router';
+import { routerUserLog } from '@view/Home/Management/UserLog/router';
 
 const LeftMenu: React.FC = () => {
-  const [activeKey, setActiveKey] = useState<string>('2');
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+
   type MenuItem = Required<MenuProps>['items'][number];
 
   function getItem(
@@ -43,6 +46,7 @@ const LeftMenu: React.FC = () => {
       onClick: onClick ? onClick : undefined,
     };
   }
+
   const items: MenuItem[] = [
     getItem('Dashboard', '1', <AppstoreOutlined />, () => {
       navigate(routerHome.path);
@@ -57,15 +61,39 @@ const LeftMenu: React.FC = () => {
       navigate(routerPro.path);
     }),
     getItem('Báo cáo', '5', <FileTextOutlined />, () => {
-      navigate(routerHome.path);
+      navigate(routerReport.path);
     }),
 
     getItem('Cài đặt hệ thống', 'sub5', <SettingOutlined />, undefined, [
-      getItem('Quản lý vai trò', '9'),
-      getItem('Quản lý tài khoản', '10'),
-      getItem('Quản lý người dùng', '11'),
+      getItem('Quản lý vai trò', '9', undefined, () => {
+        navigate(routerRoleManagement.path);
+      }),
+      getItem('Quản lý tài khoản', '10', undefined, () => {
+        navigate(routerUser.path);
+      }),
+      getItem('Quản lý người dùng', '11', undefined, () => {
+        navigate(routerUserLog.path);
+      }),
     ]),
   ];
+
+  const handleClick = (e: any) => {
+    const key = e.key;
+    setSelectedKey(key);
+    localStorage.setItem('selectedKey', key);
+  };
+
+  useEffect(() => {
+    const storedKey = localStorage.getItem('selectedKey');
+    if (storedKey) {
+      setSelectedKey(storedKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('selectedKey', selectedKey || '');
+  }, [selectedKey]);
+
   return (
     <div className="slidebar" style={{ width: 200, height: '100 vh', background: '#fff' }}>
       <div className="flex align-center justify-center py-24">
@@ -74,14 +102,17 @@ const LeftMenu: React.FC = () => {
         </div>
       </div>
 
-      <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode="vertical"
-        theme="light"
-        items={items}
-        className="bg_custom"
-      />
+      <div className="menu-wrapper">
+        <Menu
+          defaultOpenKeys={['sub1']}
+          mode="vertical"
+          theme="light"
+          items={items}
+          selectedKeys={[selectedKey || '1']}
+          onClick={handleClick}
+        />
+      </div>
+
       <div className="flex items-bottom justify-center">
         <Button
           className=""

@@ -18,6 +18,14 @@ import { routerupdetailService } from '@view/Home/Service/detail/router';
 import { routerPro } from '@view/Home/Progressitive/router';
 import { routeraddPro } from '@view/Home/Progressitive/add/router';
 import { routerupdetailPro } from '@view/Home/Progressitive/detail/router';
+import { routerReport } from '@view/Home/Report/router';
+import { routeraddRoleManagement } from '@view/Home/Management/Role/add/router';
+import { routerRoleManagement } from '@view/Home/Management/Role/router';
+import { routerupdateRoleManagement } from '@view/Home/Management/Role/update/router';
+import { routerUser } from '@view/Home/Management/User/router';
+import { routeraddUser } from '@view/Home/Management/User/add/router';
+import { routerupdateUser } from '@view/Home/Management/User/update/router';
+import { routerUserLog } from '@view/Home/Management/UserLog/router';
 
 export const privatePage: IRouter[] = [routerHome, routerPageError];
 
@@ -39,4 +47,12 @@ export const publicPage: IRouter[] = [
   routerPro,
   routeraddPro,
   routerupdetailPro,
+  routerReport,
+  routerRoleManagement,
+  routeraddRoleManagement,
+  routerupdateRoleManagement,
+  routerUser,
+  routeraddUser,
+  routerupdateUser,
+  routerUserLog,
 ];

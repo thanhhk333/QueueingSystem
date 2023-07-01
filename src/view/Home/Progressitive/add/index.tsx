@@ -1,7 +1,6 @@
 import React from 'react';
 import { Breadcrumb, Button, Card, Dropdown, Form, Layout, Space } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
-
 import LeftMenu from '@view/Components/Leftmenu';
 import Header from '@view/Components/Header';
 const { Content } = Layout;

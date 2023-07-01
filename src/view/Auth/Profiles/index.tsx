@@ -1,11 +1,12 @@
-import { Button, Col, Divider, Form, Input, Row } from 'antd';
+import { Form, Input, Row } from 'antd';
+import { Col } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './profile.scss';
 
 import Avatar from '../../../shared/assets/images/avatar.jpg';
 import LeftMenu from '@view/Components/Leftmenu';
-
+import Icon, { CameraOutlined } from '@ant-design/icons';
 import { BellFilled } from '@ant-design/icons';
 import Header from '@view/Components/Header';
 
@@ -30,12 +31,42 @@ const Proflie = () => {
           >
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className="gutter-row d-flex align-center justify-center flex-col" span={6}>
-                <img
-                  src={Avatar}
-                  alt=""
-                  className="rounded-circle w-100 h-80 mx-auto  border-2 border-gray-300"
-                />
-                <h3 className="mx-auto">Nguyễn Đức Thanh</h3>
+                <div style={{ position: 'relative', width: '90%' }}>
+                  <div
+                    style={{
+                      width: '100%',
+                      paddingBottom: '100%',
+                      position: 'relative',
+                      borderRadius: '50%',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <img
+                      src={Avatar}
+                      alt=""
+                      className="w-100 h-100"
+                      style={{ borderRadius: '50%', position: 'absolute' }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '5px',
+                      right: '5px',
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      backgroundColor: '#ff9138',
+                      border: '2px solid #fff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <CameraOutlined style={{ color: 'white', fontWeight: 'bold' }} />
+                  </div>
+                </div>
+                <h3 className="mx-auto mt-10">Nguyễn Đức Thanh</h3>
               </Col>
               <Col className="gutter-row" span={9}>
                 <Form layout="vertical">

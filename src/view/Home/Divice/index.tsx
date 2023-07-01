@@ -220,11 +220,7 @@ const Divice = () => {
 
           <div className="row_btn flex ">
             <div className="form h-fit rounded-md " id="form" style={{ background: '#fff' }}>
-              <Table
-                columns={columns}
-                dataSource={data}
-                rowClassName={(record, index) => (index % 2 === 0 ? 'even-row' : 'odd-row')}
-              />
+              <Table columns={columns} dataSource={data} className="table-striped" />
             </div>
             <FixedCard
               title={'Thêm mới'}

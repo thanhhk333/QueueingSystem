@@ -29,16 +29,14 @@ interface MenuItem {
   label: string;
   key: string;
 }
-
+interface MenuStatusProps {
+  items: MenuItem[];
+}
 interface MenuServiceProps {
   items: MenuItem[];
 }
 
 interface MenuSourceProps {
-  items: MenuItem[];
-}
-
-interface MenuStatusProps {
   items: MenuItem[];
 }
 
@@ -323,7 +321,7 @@ function ListProgressives() {
             </div>
             <div className="row">
               <div className="col-11 mt-3">
-                <Table dataSource={data} pagination={false} bordered className="mb-3">
+                <Table dataSource={data} pagination={false} bordered className="mb-3 table-striped">
                   <Column
                     title={<span className="table-title">STT</span>}
                     dataIndex="id"

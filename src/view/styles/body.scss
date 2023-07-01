@@ -16,7 +16,15 @@
   src: local('Roboto Bold'), local('Roboto-Bold'),
     url('../../shared/assets/font/Roboto/Roboto-Bold.ttf') format('truetype');
 }
-
+.table-striped tbody tr:nth-child(even) {
+  background-color: #fff2e7;
+}
+.mainColor {
+  color: #ff9138;
+}
+.mainColorLight {
+  color: #fff2e7;
+}
 html {
   font-size: 10px;
 }
