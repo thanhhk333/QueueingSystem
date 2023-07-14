@@ -1,9 +1,0 @@
-{
-  "data": [
-    {
-      "FE_KEY": "USER_CREATE_FE",
-      "BE_KEY": ["USER_CREATE"],
-      "TYPE": "AND"
-    }
-  ]
-}

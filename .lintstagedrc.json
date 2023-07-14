@@ -1,5 +1,0 @@
-{
-    "src/**/*.{ts,tsx}": [
-        "npx eslint src/**/*.ts{,x}"
-    ]
-}
