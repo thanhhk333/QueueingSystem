@@ -23,16 +23,16 @@ import AddAccount from "./page/management/account/AddAccount";
 import UpdateAccount from "./page/management/account/UpdateAccount";
 import Proflie from "./page/auth/profile";
 import ForgotPassword from "./page/auth/ForgetPass";
-import AddProWithoutLogin from "./page/newProWithOutLogin/AddproWithOutLogin";
+import Dashboard from "./page/Dashboard/Dashboard";
 
-const Router = () => {
+export const Router = () => {
     return (
         <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forget-password" element={<ForgotPassword />} />
             <Route path="/confilm-password" element={<ConfilmPassword />} />
-            <Route path="/newProw" element={<AddProWithoutLogin />} />
 
             <Route path="/device" element={<ListDevices />} />
             <Route path="/addDivice" element={<AddDevices />} />
@@ -68,4 +68,16 @@ const Router = () => {
     );
 };
 
+const GuestRouter = () => {
+    return (
+        <Routes>
+            <Route path="/" element={<AddPro />} />
+            <Route path="/detailPro/:id" element={<DetailProgressive />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forget-password" element={<ForgotPassword />} />
+            <Route path="/confilm-password" element={<ConfilmPassword />} />
+        </Routes>
+    );
+};
 export default Router;
+export { GuestRouter };

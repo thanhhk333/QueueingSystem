@@ -11,6 +11,7 @@ import {
     MenuProps,
     Dropdown,
     Space,
+    Select,
 } from "antd";
 import LeftMenu from "../../Components/Leftmenu";
 import Header from "../../Components/Header";
@@ -29,7 +30,7 @@ function UpdateAccounts() {
     const account = useSelector((state: RootState) =>
         state.account.data.find((d: any) => d.id === id)
     );
-
+    const roles = useSelector((state: RootState) => state.roleManagement.data);
     const [updateAccount, setUpdateAccount] = useState<AccountData>({
         id: account?.id || "",
         userName: account?.userName || "",
@@ -38,10 +39,12 @@ function UpdateAccounts() {
         email: account?.email || "",
         department: account?.department || "",
         status: account?.status || "",
-        role: account?.role || "",
+        role: account?.role.id || "",
+        password: account?.password || "",
     });
+    const roleName = roles.find((role) => role.id === updateAccount.role);
 
-    const [selectedRole, setSelectedRole] = useState(updateAccount.role);
+    const [selectedRole, setSelectedRole] = useState(roleName?.name || "");
     const handleRoleChange = (value: any) => {
         setSelectedRole(value);
         setUpdateAccount((prevAccount) => ({
@@ -50,25 +53,6 @@ function UpdateAccounts() {
         }));
     };
 
-    const menuProps = {
-        items: [
-            {
-                label: "Kế toán",
-                key: "1",
-                onClick: () => handleRoleChange("Kế toán"),
-            },
-            {
-                label: "Quản lý",
-                key: "2",
-                onClick: () => handleRoleChange("Quản lý"),
-            },
-            {
-                label: "Admin",
-                key: "3",
-                onClick: () => handleRoleChange("Admin"),
-            },
-        ],
-    };
     const [selectedStatus, setSelectedStatus] = useState(updateAccount.status);
 
     const handleStatusChange = (value: any) => {
@@ -79,51 +63,36 @@ function UpdateAccounts() {
         }));
     };
 
-    const menuStatus = {
-        items: [
-            {
-                label: "Hoạt động",
-                key: "2",
-                onClick: () => handleStatusChange("Hoạt động"),
-            },
-            {
-                label: "Ngưng hoạt động",
-                key: "3",
-                onClick: () => handleStatusChange("Ngưng hoạt động"),
-            },
-        ],
-    };
     const dispatch = useDispatch();
-    // const [user, setUser] = useState<AccountData>({} as AccountData);
-    // const userInfo = localStorage.getItem("userInfo");
+    const [user, setUser] = useState<AccountData>({} as AccountData);
+    const userInfo = localStorage.getItem("userInfo");
 
-    // console.log(userInfo);
-    // useEffect(() => {
-    //     const fetchUser = async () => {
-    //         const userRef = await firebase
-    //             .firestore()
-    //             .collection("accounts")
-    //             .doc(userInfo as any);
+    useEffect(() => {
+        const fetchUser = async () => {
+            const userRef = await firebase
+                .firestore()
+                .collection("accounts")
+                .doc(userInfo as any);
 
-    //         const userSnapshot = await userRef.get();
+            const userSnapshot = await userRef.get();
 
-    //         if (userSnapshot.exists) {
-    //             const userData = userSnapshot.data() as any;
-    //             setUser(userData);
-    //         }
-    //     };
-    //     fetchUser();
-    // }, [userInfo]);
+            if (userSnapshot.exists) {
+                const userData = userSnapshot.data() as any;
+                setUser(userData);
+            }
+        };
+        fetchUser();
+    }, [userInfo]);
 
-    // const userLog = {
-    //     userName: user.userName || "Unknown",
-    //     time: firebase.firestore.Timestamp.now(),
-    //     ip: "192.168.1.10",
-    //     action: "Cập nhật tài khoản",
-    // };
+    const userLog = {
+        userName: user.userName || "Guest mode",
+        time: firebase.firestore.Timestamp.now(),
+        ip: "192.168.1.10",
+        action: "Cập nhật tài khoản",
+    };
     const handleUpdateAccount = () => {
         dispatch(UpdateAccount(updateAccount) as any);
-        // dispatch(createUserLog(userLog) as any);
+        dispatch(createUserLog(userLog) as any);
     };
 
     return (
@@ -302,31 +271,20 @@ function UpdateAccounts() {
                                                         *
                                                     </span>
                                                 </label>
-                                                <Dropdown menu={menuProps}>
-                                                    <Button
-                                                        value={selectedRole}
-                                                        style={{
-                                                            width: "100%",
-                                                            fontSize: "16px",
-                                                            lineHeight: "16px",
-                                                            padding:
-                                                                "10px, 12px, 10px, 12px",
-                                                            color: "black",
-                                                            borderRadius: "8px",
-                                                        }}
-                                                        size="middle"
-                                                    >
-                                                        <Space className="flex justify-between mx-3">
-                                                            {selectedRole}
-
-                                                            <CaretDownOutlined
-                                                                style={{
-                                                                    color: "#ff9138",
-                                                                }}
-                                                            />
-                                                        </Space>
-                                                    </Button>
-                                                </Dropdown>
+                                                <Select
+                                                    suffixIcon={
+                                                        <CaretDownOutlined className="mainColor" />
+                                                    }
+                                                    value={selectedRole}
+                                                    style={{ width: "100%" }}
+                                                    onChange={handleRoleChange}
+                                                    options={roles.map(
+                                                        (item) => ({
+                                                            value: item.id,
+                                                            label: item.name,
+                                                        })
+                                                    )}
+                                                />
                                             </Col>
                                             <Col span={12}>
                                                 <label className="mb-2">
@@ -335,30 +293,27 @@ function UpdateAccounts() {
                                                         *
                                                     </span>
                                                 </label>
-                                                <Dropdown menu={menuStatus}>
-                                                    <Button
-                                                        value={selectedStatus}
-                                                        style={{
-                                                            width: "100%",
-                                                            fontSize: "16px",
-                                                            lineHeight: "16px",
-                                                            padding:
-                                                                "10px, 12px, 10px, 12px",
-                                                            color: "black",
-                                                            borderRadius: "8px",
-                                                        }}
-                                                        size="middle"
-                                                    >
-                                                        <Space className="flex justify-between mx-3">
-                                                            {selectedStatus}
-                                                            <CaretDownOutlined
-                                                                style={{
-                                                                    color: "#ff9138",
-                                                                }}
-                                                            />
-                                                        </Space>
-                                                    </Button>
-                                                </Dropdown>
+
+                                                <Select
+                                                    suffixIcon={
+                                                        <CaretDownOutlined className="mainColor" />
+                                                    }
+                                                    value={selectedStatus}
+                                                    style={{ width: "100%" }}
+                                                    onChange={
+                                                        handleStatusChange
+                                                    }
+                                                    options={[
+                                                        {
+                                                            value: "Hoạt động",
+                                                            label: " Hoạt động",
+                                                        },
+                                                        {
+                                                            value: "Ngưng hoạt động",
+                                                            label: " Ngưng hoạt động",
+                                                        },
+                                                    ]}
+                                                />
                                             </Col>
                                             <Col
                                                 span={24}

@@ -167,28 +167,47 @@ function AddPro() {
                         <div className="container">
                             <div className="row">
                                 <div className="col">
-                                    <Header
-                                        headerContent={
-                                            <Breadcrumb className="custom-breadcrumb">
-                                                <Breadcrumb.Item>
-                                                    Cấp số
-                                                </Breadcrumb.Item>
-                                                <Breadcrumb.Item>
-                                                    Danh sách cấp số
-                                                </Breadcrumb.Item>
-                                                <Breadcrumb.Item>
-                                                    <span
-                                                        style={{
-                                                            color: "#ff9138",
-                                                        }}
-                                                    >
-                                                        {" "}
-                                                        Cấp số mới{" "}
-                                                    </span>
-                                                </Breadcrumb.Item>
-                                            </Breadcrumb>
-                                        }
-                                    />
+                                    {isLoggedIn === "true" ? (
+                                        <Header
+                                            headerContent={
+                                                <Breadcrumb className="custom-breadcrumb">
+                                                    <Breadcrumb.Item>
+                                                        Cấp số
+                                                    </Breadcrumb.Item>
+                                                    <Breadcrumb.Item>
+                                                        Danh sách cấp số
+                                                    </Breadcrumb.Item>
+                                                    <Breadcrumb.Item>
+                                                        <span
+                                                            style={{
+                                                                color: "#ff9138",
+                                                            }}
+                                                        >
+                                                            {" "}
+                                                            Cấp số mới{" "}
+                                                        </span>
+                                                    </Breadcrumb.Item>
+                                                </Breadcrumb>
+                                            }
+                                        />
+                                    ) : (
+                                        <Breadcrumb className="custom-breadcrumb mt-10">
+                                            <Breadcrumb.Item>
+                                                Cấp số
+                                            </Breadcrumb.Item>
+
+                                            <Breadcrumb.Item>
+                                                <span
+                                                    style={{
+                                                        color: "#ff9138",
+                                                    }}
+                                                >
+                                                    {" "}
+                                                    Cấp số mới{" "}
+                                                </span>
+                                            </Breadcrumb.Item>
+                                        </Breadcrumb>
+                                    )}
                                 </div>
                             </div>
                             <div className="pt-5">

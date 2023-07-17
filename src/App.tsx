@@ -1,5 +1,5 @@
 import React from "react";
-import Router from "./router";
+import Router, { GuestRouter } from "./router";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
@@ -21,12 +21,9 @@ firebase.auth();
 firebase.firestore();
 export const storage = firebase.storage();
 
+const isLoggedIn = localStorage.getItem("isLoggedIn");
 function App() {
-    return (
-        <>
-            <Router />
-        </>
-    );
+    return <>{isLoggedIn === "true" ? <Router /> : <GuestRouter />}</>;
 }
 
 export default App;

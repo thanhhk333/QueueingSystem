@@ -43,7 +43,7 @@ const LeftMenu: React.FC = () => {
     if (isLoggedIn === "true") {
         items.push(
             getItem("Dashboard", "1", <AppstoreOutlined />, () => {
-                navigate("/");
+                navigate("/dashboard");
             }),
             getItem("Thiết bị", "2", <DesktopOutlined />, () => {
                 navigate("/device");
@@ -131,19 +131,6 @@ const LeftMenu: React.FC = () => {
             </div>
 
             <div className="flex items-bottom justify-center mt-20">
-                {/* <Button
-                    onClick={handleLogout}
-                    className=""
-                    style={{
-                        color: "#ff9138",
-                        background: "#fff2e7",
-                        outline: "none",
-                        border: "none",
-                    }}
-                >
-                    <LogoutOutlined /> Đăng xuất
-                </Button> */}
-
                 {isLoggedIn === "true" ? (
                     <Button
                         onClick={handleLogout}

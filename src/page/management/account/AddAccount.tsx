@@ -35,7 +35,7 @@ function AddAccount() {
         email: "",
         password: "",
         status: "Hoạt động",
-        role: "Kế toán",
+        role: "",
     });
 
     const [selectedRole, setSelectedRole] = useState("Kế toán");

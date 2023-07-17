@@ -113,7 +113,7 @@ body,
     background-color: #fff2e7;
 }
 .mainColor {
-    color: #ff9138 !important;
+    color: #ff7506 !important;
 }
 .mainColorLight {
     color: #fff2e7;
@@ -146,4 +146,12 @@ body,
 
 .ant-layout-sider.ant-layout-sider-light {
     overflow-x: hidden !important;
+}
+.icon-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
 }

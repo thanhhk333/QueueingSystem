@@ -153,7 +153,7 @@ const Header: React.FC<HeaderProps> = ({ headerContent }) => {
                         />
                     </Link>
                     <div className="sub m-0">
-                        <p className="font-extralight text-sm leading-2">
+                        <p className="font-extralight text-sm leading-5">
                             Xin chào
                         </p>
                         <p className="font-bold text-xl leading-3">

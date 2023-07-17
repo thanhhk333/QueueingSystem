@@ -202,7 +202,7 @@ export const getLogout = (): AppThunk => async (dispatch: any) => {
         dispatch(accountSlice.actions.logout());
         localStorage.setItem("userInfo", JSON.stringify({}));
         localStorage.setItem("isLoggedIn", "false");
-        window.location.href = "/login";
+        window.location.href = "/";
     } catch (error: any) {
         alert(error.message);
     }
