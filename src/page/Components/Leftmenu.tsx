@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
     AppstoreOutlined,
+    CodepenOutlined,
     CommentOutlined,
     DesktopOutlined,
     FileTextOutlined,
-    GroupOutlined,
     LogoutOutlined,
     SettingOutlined,
 } from "@ant-design/icons";
@@ -51,7 +51,7 @@ const LeftMenu: React.FC = () => {
             getItem("Dịch vụ", "3", <CommentOutlined />, () => {
                 navigate("/service");
             }),
-            getItem("Cấp số", "4", <GroupOutlined />, () => {
+            getItem("Cấp số", "4", <CodepenOutlined />, () => {
                 navigate("/progressive");
             }),
             getItem("Báo cáo", "5", <FileTextOutlined />, () => {
@@ -77,7 +77,7 @@ const LeftMenu: React.FC = () => {
         );
     } else {
         items.push(
-            getItem("Cấp số", "4", <GroupOutlined />, () => {
+            getItem("Cấp số", "4", <CodepenOutlined />, () => {
                 navigate("/addPro");
             })
         );

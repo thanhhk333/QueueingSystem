@@ -5,8 +5,9 @@ import { Divider, Popover, Space } from "antd";
 import { Link } from "react-router-dom";
 import { AccountData } from "../management/account/redux/AccountSlice";
 import firebase from "firebase/compat/app";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { fetchProgressive } from "../progressive/redux/progressiveSlice";
 type HeaderProps = {
     headerContent?: React.ReactNode;
 };
@@ -35,7 +36,12 @@ const Header: React.FC<HeaderProps> = ({ headerContent }) => {
     const handleNotificationClick = () => {
         setShowNotification(!showNotification);
     };
+    const dispath = useDispatch();
+    useEffect(() => {
+        dispath(fetchProgressive() as any);
+    });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const listpro = useSelector((state: RootState) => state.progressive.data);
 
     const notificationContent = (

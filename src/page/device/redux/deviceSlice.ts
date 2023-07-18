@@ -127,6 +127,7 @@ export const addDevice =
             const deviceCollection = firebase.firestore().collection("devices");
             await deviceCollection.add(newDevice);
             dispatch(addDeviceSuccess(newDevice));
+            window.location.href = "/device";
         } catch (error: any) {
             dispatch(addDeviceFailure(error.message));
         }

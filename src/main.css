@@ -155,3 +155,44 @@ body,
     width: 48px;
     height: 48px;
 }
+.cirle-inside {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+.ant-card .ant-card-body {
+    padding: 10px !important;
+}
+
+.spectrum-Icon_368b34.spectrum-UIIcon-ChevronLeftLarge_368b34.spectrum-Icon_e2d99e
+    path,
+.spectrum-Icon_368b34.spectrum-UIIcon-ChevronRightLarge_368b34.spectrum-Icon_e2d99e
+    path {
+    fill: #ff7506 !important;
+}
+.spectrum-Calendar-body_6099b6.spectrum-Calendar-table_6099b6
+    thead
+    .spectrum-Calendar-tableCell_6099b6
+    span {
+    color: #ff7506 !important;
+    font-size: 13px !important;
+    margin: 5px 0px !important;
+    border-top: 1px solid #dcddfd !important;
+}
+
+.spectrum-Calendar-date_6099b6.is-range-selection_6099b6 {
+    background-color: #fff2e7 !important;
+    color: #ff7506 !important;
+}
+.spectrum-Calendar-date_6099b6.is-selection-start_6099b6,
+.spectrum-Calendar-date_6099b6.is-selection-end_6099b6 {
+    background-color: #ff7506 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+}
+.spectrum-Calendar-monthHeader_6099b6 {
+    color: #ff7506 !important;
+    font-size: 15px !important;
+    padding-bottom: 5px;
+}

@@ -27,7 +27,7 @@ function AddService() {
         idService: "",
         name: "",
         description: "",
-        status: "",
+        status: "Hoạt động",
     });
 
     const handleInputChange = (event: any) => {
@@ -180,7 +180,6 @@ function AddService() {
                                                     rows={5}
                                                     name="description"
                                                     placeholder="Mô tả dịch vụ"
-                                                    maxLength={6}
                                                     value={
                                                         serviceData.description
                                                     }

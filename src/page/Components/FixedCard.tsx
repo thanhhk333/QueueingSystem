@@ -7,6 +7,7 @@ interface FixedCardProps {
     title: string;
     icon: React.ReactNode;
     className?: string;
+    onClick?: () => void;
 }
 
 export default function FixedCard({
@@ -14,6 +15,7 @@ export default function FixedCard({
     title,
     icon,
     className,
+    onClick,
 }: FixedCardProps) {
     const cardClassName = `fixed-card text-center${
         className ? ` ${className}` : ""
@@ -22,7 +24,7 @@ export default function FixedCard({
     return (
         <div>
             <Link to={href}>
-                <Card className={cardClassName.trim()}>
+                <Card className={cardClassName.trim()} onClick={onClick}>
                     <span style={{ fontSize: 24 }}>
                         {typeof icon === "string" ? (
                             <img src={icon} alt="Icon" />

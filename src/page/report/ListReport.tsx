@@ -17,7 +17,7 @@ import { RootState } from "../../store";
 import { fetchProgressive } from "../progressive/redux/progressiveSlice";
 import { fetchService } from "../service/redux/serviceSilece";
 import dayjs from "dayjs";
-
+import tableExport from "antd-table-export";
 const { Content } = Layout;
 
 function ListReport() {
@@ -103,6 +103,38 @@ function ListReport() {
             : true;
         return dateMath;
     });
+    const columns = [
+        {
+            title: "Tên dịch vụ",
+            dataIndex: "nameService",
+            key: "nameService",
+        },
+        {
+            title: "Thời gian cấp",
+            dataIndex: "grantTime",
+            key: "grantTime",
+        },
+        {
+            title: "Thời gian hết hạn",
+            dataIndex: "exp",
+            key: "exp",
+        },
+        {
+            title: "Trạng thái",
+            dataIndex: "status",
+            key: "status",
+        },
+        {
+            title: "Nguồn cấp",
+            dataIndex: "source",
+            key: "source",
+        },
+    ];
+
+    const handleExport = () => {
+        const exportInstance = new tableExport(filteredData, columns);
+        exportInstance.download("xlsx", "Báo cáo");
+    };
 
     return (
         <div className="flex">
@@ -339,6 +371,7 @@ function ListReport() {
                                 </div>
                                 <div className="col-1 mt-3">
                                     <FixedCard
+                                        onClick={handleExport}
                                         href={""}
                                         icon={
                                             <VerticalAlignBottomOutlined className="fw-bold fs-1" />
