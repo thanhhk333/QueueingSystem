@@ -410,9 +410,8 @@ function ListProgressives() {
                                     bordered
                                     className="mb-3 table-striped"
                                     pagination={{
-                                        current: 1,
-                                        pageSize: 10,
-                                        total: 100,
+                                        pageSize: 7,
+                                        total: dataFiltered.length,
                                         showSizeChanger: false,
                                     }}
                                 >

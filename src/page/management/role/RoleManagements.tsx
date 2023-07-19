@@ -84,7 +84,11 @@ function ListRole() {
                             <div className="col-11 mt-3">
                                 <Table
                                     dataSource={roleManagementData}
-                                    pagination={false}
+                                    pagination={{
+                                        pageSize: 7,
+                                        total: roleManagementData.length,
+                                        showSizeChanger: false,
+                                    }}
                                     bordered
                                     className="mb-3 table-striped"
                                 >
@@ -143,11 +147,6 @@ function ListRole() {
                                         )}
                                     />
                                 </Table>
-                                <Pagination
-                                    total={100}
-                                    showSizeChanger={false}
-                                    style={{ textAlign: "right" }}
-                                />
                             </div>
                             <div className="col-1 mt-3">
                                 <FixedCard

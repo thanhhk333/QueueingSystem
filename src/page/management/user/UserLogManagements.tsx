@@ -159,7 +159,11 @@ const UserLog = () => {
                                 <div className="col-11 mt-3">
                                     <Table
                                         dataSource={filteredData}
-                                        pagination={false}
+                                        pagination={{
+                                            pageSize: 7,
+                                            total: filteredData.length,
+                                            showSizeChanger: false,
+                                        }}
                                         bordered
                                         className="mb-3 table-striped"
                                     >
@@ -212,12 +216,6 @@ const UserLog = () => {
                                             )}
                                         />
                                     </Table>
-                                    <Pagination
-                                        total={100}
-                                        showSizeChanger={false}
-                                        style={{ textAlign: "right" }}
-                                        pageSize={itemperpage}
-                                    />
                                 </div>
                             </div>
                         </div>

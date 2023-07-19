@@ -6,6 +6,7 @@ import login from "../../assets/images/login_image.svg";
 import logo from "../../assets/images/logo.png";
 import { useDispatch } from "react-redux";
 import { getLogin } from "../management/account/redux/AccountSlice";
+import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
     const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const Login: React.FC = () => {
                                         <Input
                                             id="username"
                                             name="username"
+                                            placeholder="user test: thanhhk333"
                                             onChange={handleChange}
                                             value={user.username}
                                         />
@@ -92,10 +94,19 @@ const Login: React.FC = () => {
                                         <Input.Password
                                             id="password"
                                             name="password"
+                                            placeholder="123"
                                             onChange={handleChange}
                                             value={user.password}
                                         />
                                     </Form.Item>
+                                </div>
+                                <div className="row">
+                                    <Link
+                                        to="/forget-password"
+                                        className="text-[red] justify-start p-0 ml-16 mb-2"
+                                    >
+                                        Quên mật khẩu ?
+                                    </Link>
                                 </div>
                                 <div className="col-12 text-center">
                                     <Form.Item>

@@ -1,12 +1,50 @@
 import React from "react";
+import { useState } from "react";
 import { Button, Input, Form } from "antd";
-import { FormInstance } from "antd/lib/form";
 import logo from "../../assets/images/logo.png";
 import bg from "../../assets/images/wrong_pass.png";
+import firebase from "firebase/compat/app";
+import { useNavigate } from "react-router-dom";
 
 const ConfilmPassword: React.FC = () => {
-    const formRef = React.useRef<FormInstance>(null);
+    const userUid = JSON.parse(localStorage.getItem("user") || "{}");
+    const navigate = useNavigate();
+    const [errors, setErrors] = useState(false);
+    // lấy giá trị của userId thông qua firebase
+    const [user, setUser] = React.useState({
+        userName: userUid.userName,
+        email: userUid.email,
+        password: userUid.password,
+        confirmPassword: userUid.confirmPassword,
+        role: userUid.role,
+        phone: userUid.phoneNumber,
+        fullName: userUid.fullName,
+        id: userUid.id,
+        status: "Hoạt động",
+    });
 
+    const handleSubmit = async () => {
+        if (user.confirmPassword === user.password) {
+            await firebase
+                .firestore()
+                .collection("accounts")
+                .doc(user.id)
+                .update({
+                    password: user.password,
+                });
+
+            navigate("/profile");
+        } else {
+            alert("Mật khẩu không khớp");
+            setErrors(true);
+        }
+    };
+    const handleInputChange = (e: any) => {
+        const { name, value } = e.target;
+        setUser({ ...user, [name]: value });
+    };
+
+    console.log(user);
     return (
         <>
             <div className="container-fluid">
@@ -21,7 +59,6 @@ const ConfilmPassword: React.FC = () => {
                                 name="basic"
                                 initialValues={{ remember: true }}
                                 autoComplete="off"
-                                ref={formRef}
                             >
                                 <div className="col-12 px-5 text-center">
                                     <label htmlFor="" className="fs-5 fw-bold">
@@ -29,33 +66,75 @@ const ConfilmPassword: React.FC = () => {
                                     </label>
                                 </div>
                                 <div className="col-12 px-5 mt-2">
-                                    <label htmlFor="" className="px-4 ">
-                                        Mật khẩu
-                                        <span>*</span>
-                                    </label>
-                                    <Form.Item className="px-4">
-                                        <Input.Password />
+                                    <Form.Item
+                                        label={
+                                            <span className="text-lg font-light">
+                                                Mật khẩu *
+                                            </span>
+                                        }
+                                        name="password"
+                                        htmlFor="password"
+                                        labelCol={{ span: 24 }}
+                                        wrapperCol={{ span: 24 }}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    "Vui lòng điền mật khẩu!",
+                                            },
+                                        ]}
+                                    >
+                                        <Input.Password
+                                            size="large"
+                                            id="password"
+                                            name="password"
+                                            value={user.password}
+                                            onChange={handleInputChange}
+                                        />
                                     </Form.Item>
-                                </div>
-                                <div className="col-12 px-5">
-                                    <label htmlFor="" className="px-4 ">
-                                        Nhập lại mật khẩu
-                                        <span>*</span>
-                                    </label>
-                                    <Form.Item className="px-4">
-                                        <Input.Password />
+
+                                    <Form.Item
+                                        label={
+                                            <span className="text-lg font-light">
+                                                Nhập lại mật khẩu *
+                                            </span>
+                                        }
+                                        name="confirmPassword"
+                                        htmlFor="confirmPassword"
+                                        labelCol={{ span: 24 }}
+                                        wrapperCol={{ span: 24 }}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message:
+                                                    "Vui lòng điền lại mật khẩu!",
+                                            },
+                                        ]}
+                                    >
+                                        <Input.Password
+                                            size="large"
+                                            id="confirmPassword"
+                                            name="confirmPassword"
+                                            value={user.confirmPassword}
+                                            onChange={handleInputChange}
+                                        />
                                     </Form.Item>
+                                    {errors ? (
+                                        <p className="text-danger">
+                                            Mật khẩu không khớp
+                                        </p>
+                                    ) : null}
                                 </div>
                                 <div className="col-12 text-center">
                                     <Form.Item>
                                         <Button
+                                            size="large"
                                             style={{
                                                 background: "#FF9138",
                                                 color: "white",
                                             }}
                                             className="w-25 mt-2"
-                                            type="link"
-                                            href="/"
+                                            onClick={handleSubmit}
                                         >
                                             Xác nhận
                                         </Button>

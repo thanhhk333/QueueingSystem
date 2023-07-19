@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 import deviceSlice, { DataType, fetchDevice } from "./redux/deviceSlice";
+import { data } from "autoprefixer";
 
 const Divice = () => {
     const dispatch = useDispatch();
@@ -251,6 +252,11 @@ const Divice = () => {
                                 dataSource={dataFiltered}
                                 loading={loading}
                                 className="table-striped"
+                                pagination={{
+                                    pageSize: 7,
+                                    total: dataFiltered.length,
+                                    showSizeChanger: false,
+                                }}
                             />
                         </div>
                         <FixedCard

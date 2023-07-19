@@ -168,7 +168,7 @@ function AddService() {
                                         </div>
                                         <div className="col-6">
                                             <label htmlFor="" className="mb-2">
-                                                Mô tả:{" "}
+                                                Mô tả:
                                                 <span
                                                     style={{ color: "#FF9138" }}
                                                 >
@@ -177,6 +177,7 @@ function AddService() {
                                             </label>
                                             <Form.Item className="">
                                                 <TextArea
+                                                    maxLength={2000}
                                                     rows={5}
                                                     name="description"
                                                     placeholder="Mô tả dịch vụ"

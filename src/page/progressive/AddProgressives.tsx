@@ -90,7 +90,6 @@ function AddPro() {
         action: "Thêm cấp số mới",
     };
 
-    console.log(userLog);
     const [pro, setPro] = React.useState({
         name: "",
         nameService: "",
@@ -116,7 +115,6 @@ function AddPro() {
         dispatch(createUserLog(userLog) as any);
         setModalPro(true);
     };
-    console.log(pro);
 
     const handleCheck = () => {
         if (isLoggedIn === "true") {
@@ -136,13 +134,6 @@ function AddPro() {
             setModalForm(true);
         }
     };
-
-    useEffect(() => {
-        if (isLoggedIn === "true") {
-            dispatch(createProgressive(pro as any) as any);
-            dispatch(createUserLog(userLog) as any);
-        }
-    }, [pro, isLoggedIn, dispatch]);
 
     const grantTime = pro.grantTime.toDate();
     const exp = pro.exp.toDate();
@@ -229,42 +220,6 @@ function AddPro() {
                                     <p className="text-center">
                                         <Form>
                                             <Form.Item>
-                                                {/* <Dropdown menu={menuService}>
-                                                    <Button
-                                                        onChange={(
-                                                            value: any
-                                                        ) => {
-                                                            handleInputChange({
-                                                                target: {
-                                                                    name: "nameService",
-                                                                    value: value,
-                                                                },
-                                                            });
-                                                        }}
-                                                        style={{
-                                                            background: "#fff",
-                                                            width: "30%",
-                                                            border: "2px solid rgba(212, 212, 215, 1)",
-                                                            fontSize: "16px",
-                                                            lineHeight: "16px",
-                                                            padding:
-                                                                "10px, 12px, 10px, 12px",
-                                                            color: "black",
-                                                            borderRadius: "8px",
-                                                        }}
-                                                        size="large"
-                                                    >
-                                                        <Space className="flex justify-between mx-3">
-                                                            {selectednameService ||
-                                                                "Chọn dịch vụ"}
-                                                            <CaretDownOutlined
-                                                                style={{
-                                                                    color: "#ff9138",
-                                                                }}
-                                                            />
-                                                        </Space>
-                                                    </Button>
-                                                </Dropdown> */}
                                                 <Select
                                                     style={{ width: "30%" }}
                                                     size="large"

@@ -154,14 +154,18 @@ export const UpdateAccount =
     async (dispatch) => {
         try {
             dispatch(updateAccountStart());
-            const accountCollection = firebase
+            const { id, ...data } = updatedAccount;
+            const accountRef = firebase
+
                 .firestore()
-                .collection("accounts");
-            await accountCollection
-                .doc(updatedAccount.id)
-                .update(updatedAccount);
+                .collection("accounts")
+                .doc(id);
+            await accountRef.update({
+                ...data,
+                role: firebase.firestore().doc(`roles/${updatedAccount.role}`),
+            });
             dispatch(updateAccountSuccess(updatedAccount));
-            // Redirect to the account management page
+
             window.location.href = "/account";
         } catch (error: any) {
             dispatch(updateAccountFailure(error.message));

@@ -76,6 +76,7 @@ const GuestRouter = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/forget-password" element={<ForgotPassword />} />
             <Route path="/confilm-password" element={<ConfilmPassword />} />
+            <Route path="/profile" element={<Proflie />} />
         </Routes>
     );
 };

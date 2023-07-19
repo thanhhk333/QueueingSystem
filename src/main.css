@@ -16,13 +16,9 @@
 }
 .ant-input:hover,
 button.ant-btn:hover,
-textarea:hover {
+textarea:hover .ant-select:hover {
     border: 2px solid #ff9138 !important;
     box-shadow: 0 0 4px #ff9138 !important;
-}
-.ant-input:hover + .ant-input-prefix,
-.ant-input:hover + .ant-input-suffix {
-    border-color: initial !important;
 }
 
 h1,
@@ -128,6 +124,11 @@ body,
     margin-left: 20px;
     border-radius: 10px;
     width: 90%;
+}
+
+.ant-select-item.ant-select-item-option:hover {
+    background-color: #fff2e7 !important;
+    color: #ff7506 !important;
 }
 .ant-modal-footer {
     background: #ff9138 !important;

@@ -88,19 +88,20 @@ const Header: React.FC<HeaderProps> = ({ headerContent }) => {
                         .padStart(2, "0")}/${grantTime.getFullYear()}`;
                     return (
                         <div>
-                            <Space direction="vertical" size={-8}>
-                                <strong
-                                    className="mb-0"
-                                    style={{ color: "#ff9138" }}
-                                >
-                                    Người dùng: {item.name}
-                                </strong>
-                                <span className="mb-0">
-                                    Thời gian nhận số: {formattedgrantTime} ngày{" "}
-                                    {grantTimeToDate}
-                                </span>
-                            </Space>
-
+                            <Link to={`/detailPro/${item.id}`}>
+                                <Space direction="vertical" size={-8}>
+                                    <strong
+                                        className="mb-0"
+                                        style={{ color: "#ff9138" }}
+                                    >
+                                        Người dùng: {item.name}
+                                    </strong>
+                                    <span className="mb-0">
+                                        Thời gian nhận số: {formattedgrantTime}{" "}
+                                        ngày {grantTimeToDate}
+                                    </span>
+                                </Space>
+                            </Link>
                             <Divider
                                 style={{
                                     margin: "8px 0",

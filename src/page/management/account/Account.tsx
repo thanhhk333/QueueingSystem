@@ -210,6 +210,11 @@ const Account = () => {
                                 columns={columns}
                                 dataSource={filteredData}
                                 className="table-striped"
+                                pagination={{
+                                    pageSize: 7,
+                                    total: filteredData.length,
+                                    showSizeChanger: false,
+                                }}
                             />
                         </div>
                         <FixedCard
