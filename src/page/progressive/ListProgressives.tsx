@@ -17,6 +17,7 @@ import {
     CaretDownOutlined,
     CaretRightOutlined,
     PlusSquareFilled,
+    RightOutlined,
     SearchOutlined,
 } from "@ant-design/icons";
 import Column from "antd/es/table/Column";
@@ -176,19 +177,30 @@ function ListProgressives() {
                             <div className="col">
                                 <Header
                                     headerContent={
-                                        <Breadcrumb className="custom-breadcrumb">
-                                            <Breadcrumb.Item>
-                                                Cấp số
-                                            </Breadcrumb.Item>
-
-                                            <Breadcrumb.Item>
-                                                <span
-                                                    style={{ color: "#ff9138" }}
-                                                >
-                                                    Danh sách cấp số{" "}
-                                                </span>
-                                            </Breadcrumb.Item>
-                                        </Breadcrumb>
+                                        <Breadcrumb
+                                            className="custom-breadcrumb"
+                                            separator={
+                                                <RightOutlined className="text-[#ff9138]" />
+                                            }
+                                            items={[
+                                                {
+                                                    key: "capso",
+                                                    title: "Cấp số",
+                                                },
+                                                {
+                                                    key: "danhsachcapso",
+                                                    title: (
+                                                        <span
+                                                            style={{
+                                                                color: "#ff9138",
+                                                            }}
+                                                        >
+                                                            Danh sách cấp số
+                                                        </span>
+                                                    ),
+                                                },
+                                            ]}
+                                        />
                                     }
                                 />
                             </div>

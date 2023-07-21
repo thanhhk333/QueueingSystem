@@ -2,18 +2,18 @@ import { Form, Input, Row, Button, Upload } from "antd";
 import { Col } from "antd";
 import React, { useEffect, useState } from "react";
 
-import Avatar from "../../assets/images/avatar.jpg";
+import Avatar from "../../assets/images/db.jpg";
 import LeftMenu from "../Components/Leftmenu";
-import Icon, { CameraOutlined } from "@ant-design/icons";
-import { BellFilled } from "@ant-design/icons";
+import { CameraOutlined } from "@ant-design/icons";
+
 import Header from "../Components/Header";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import firebase from "firebase/compat/app";
-import { AccountData } from "../management/account/redux/AccountSlice";
-import Account from "./../management/account/Account";
-import MenuWithoutLogin from "../Components/menuWithoutLogin";
-
+import {
+    AccountData,
+    getLogin,
+} from "../management/account/redux/AccountSlice";
 const Proflie = () => {
     const roles = useSelector(
         (state: RootState) => state.roleManagement.data
@@ -22,11 +22,8 @@ const Proflie = () => {
     const isLoggedIn = useSelector(
         (state: RootState) => state.account.isLoggedIn
     );
-    console.log(isLoggedIn);
     const [user, setUser] = useState<AccountData>({} as AccountData);
     const userInfo = localStorage.getItem("userInfo");
-
-    console.log(userInfo);
     useEffect(() => {
         const fetchUser = async () => {
             const userRef = await firebase
@@ -44,48 +41,28 @@ const Proflie = () => {
         fetchUser();
     }, [userInfo]);
 
-    console.log(roles);
     const nameRole = roles.find((r) => r.id === user?.role.id)?.name;
-    const [imgUrl, setImgUrl] = useState<string>("");
-    const [loadImage, setLoadImage] = useState<boolean>(false);
-    const [img, setImg] = useState<any>(null);
-    const handleUpdateAvatar = () => {
-        const profile = firebase
-            .firestore()
-            .collection("accounts")
-            .doc(userInfo as any);
-        const updatedProfile: AccountData = {
-            ...user,
-            image: imgUrl || user.image,
-        };
-        profile.update(updatedProfile).then(() => {
-            console.log("update success");
-        });
-    };
+
+    // handleupdate image by firebase
+    const [imgUrl, setImgUrl] = useState("");
+    const dispath = useDispatch();
     const handleUpload = async (e: any) => {
-        setLoadImage(true);
-        setImg(e);
+        const file = e.target.files?.[0];
+        console.log(file);
 
         try {
             const storageRef = firebase.storage().ref();
-            const fileRef = storageRef.child(`accounts/${e.name}`);
-            await fileRef.put(e);
-            const url = await fileRef.getDownloadURL();
-            setImgUrl(url);
-            setLoadImage(false);
+            const fileRef = storageRef.child(file.name);
+            await fileRef.put(file);
+            const imgUrls = await fileRef.getDownloadURL();
+            console.log(imgUrls); // Kiểm tra xem đường dẫn URL đã được nhận hay không
+            setImgUrl(imgUrls);
+            dispath(getLogin(user.userName, user.password) as any);
         } catch (error) {
             console.log(error);
-
-            setLoadImage(false);
         }
     };
-
-    useEffect(() => {
-        if (img) {
-            handleUpdateAvatar();
-        }
-    });
-
+    console.log(imgUrl);
     return (
         <>
             <div
@@ -128,7 +105,7 @@ const Proflie = () => {
                                         }}
                                     >
                                         <img
-                                            src={imgUrl || Avatar}
+                                            src={Avatar || user.image}
                                             alt=""
                                             className="w-100 h-100"
                                             style={{
@@ -137,13 +114,14 @@ const Proflie = () => {
                                             }}
                                         />
                                     </div>
+
                                     <Button
                                         style={{
                                             position: "absolute",
-                                            bottom: "5px",
-                                            right: "5px",
-                                            width: "40px",
-                                            height: "40px",
+                                            bottom: "10px",
+                                            right: "10px",
+                                            width: "44px",
+                                            height: "44px",
                                             borderRadius: "50%",
                                             backgroundColor: "#ff9138",
                                             border: "2px solid #fff",
@@ -152,17 +130,12 @@ const Proflie = () => {
                                             justifyContent: "center",
                                         }}
                                         icon={
-                                            <Upload
-                                                beforeUpload={handleUpload}
-                                                showUploadList={false}
-                                            >
-                                                <CameraOutlined
-                                                    style={{
-                                                        color: "white",
-                                                        fontWeight: "bold",
-                                                    }}
-                                                />
-                                            </Upload>
+                                            <CameraOutlined
+                                                style={{
+                                                    color: "white",
+                                                    fontWeight: "bold",
+                                                }}
+                                            />
                                         }
                                     ></Button>
                                 </div>

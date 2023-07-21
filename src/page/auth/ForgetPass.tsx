@@ -82,6 +82,7 @@ const ForgotPassword: React.FC = () => {
                                         ]}
                                     >
                                         <Input
+                                            size="large"
                                             id="email"
                                             name="email"
                                             placeholder="email test: thanhhk333@gmail.com"
@@ -106,12 +107,14 @@ const ForgotPassword: React.FC = () => {
                                         <Button
                                             danger
                                             htmlType="submit"
-                                            href="/"
+                                            href="/login"
                                             className="me-3 mt-2 w-25"
+                                            size="large"
                                         >
                                             Hủy
                                         </Button>
                                         <Button
+                                            size="large"
                                             htmlType="submit"
                                             style={{
                                                 background: "#FF9138",

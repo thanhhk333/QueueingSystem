@@ -3,7 +3,7 @@ import { Button, Input, Typography, Form } from "antd";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import login from "../../assets/images/login_image.svg";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.svg";
 import { useDispatch } from "react-redux";
 import { getLogin } from "../management/account/redux/AccountSlice";
 import { Link } from "react-router-dom";
@@ -44,7 +44,7 @@ const Login: React.FC = () => {
                 <div className="row">
                     <div className="col-5 flex items-center">
                         <div className="row px-5">
-                            <div className="col-12 flex items-center justify-center">
+                            <div className="col-12 flex items-center justify-center mb-5">
                                 <img className=" mt-5 " src={logo} alt="" />
                             </div>
 
@@ -74,6 +74,7 @@ const Login: React.FC = () => {
                                             placeholder="user test: thanhhk333"
                                             onChange={handleChange}
                                             value={user.username}
+                                            size="large"
                                         />
                                     </Form.Item>
                                 </div>
@@ -97,6 +98,7 @@ const Login: React.FC = () => {
                                             placeholder="123"
                                             onChange={handleChange}
                                             value={user.password}
+                                            size="large"
                                         />
                                     </Form.Item>
                                 </div>
@@ -111,6 +113,7 @@ const Login: React.FC = () => {
                                 <div className="col-12 text-center">
                                     <Form.Item>
                                         <Button
+                                            size="large"
                                             type="default"
                                             style={{
                                                 background: "#FF9138",

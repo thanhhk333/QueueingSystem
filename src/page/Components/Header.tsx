@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BellFilled } from "@ant-design/icons";
-import Avatar from "../../assets/images/avatar.jpg";
+import Avatar from "../../assets/images/db.jpg";
 import { Divider, Popover, Space } from "antd";
 import { Link } from "react-router-dom";
 import { AccountData } from "../management/account/redux/AccountSlice";

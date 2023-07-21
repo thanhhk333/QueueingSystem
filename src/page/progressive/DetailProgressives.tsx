@@ -35,7 +35,7 @@ function DetailProgressive() {
         exp: data?.exp?.toDate().toLocaleDateString(),
     });
     const nameSV = services.find((r) => r.id === pro?.nameService)?.name;
-    console.log(pro);
+
     const dataL = [
         {
             label: "Họ tên:",

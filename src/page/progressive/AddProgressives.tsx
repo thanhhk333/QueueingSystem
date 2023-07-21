@@ -36,7 +36,6 @@ const menuService: MenuServiceProps = {
 function AddPro() {
     const [modalPro, setModalPro] = React.useState(false);
     const [modalForm, setModalForm] = React.useState(false);
-
     const dispatch = useDispatch();
     const dataService = useSelector((state: RootState) => state.service.data);
     // const isLoggedIn = useSelector(
@@ -99,13 +98,37 @@ function AddPro() {
         ),
         status: "Đang chờ",
         source: isLoggedIn === "true" ? "Hệ thống" : "Kiosk",
-        stt: "43978434",
+        stt: "",
         phone: "",
         email: "",
     });
+
+    useEffect(() => {
+        if (isLoggedIn === "true") {
+            const random = Math.floor(Math.random() * 1000000);
+            const randomStt = random.toString().padStart(6, "0");
+            const updatedPro = {
+                ...pro,
+                stt: randomStt,
+                name: user.fullName,
+                phone: user.phone,
+                email: user.email,
+                grantTime: currentTime,
+                exp: firebase.firestore.Timestamp.fromMillis(
+                    currentTime.toMillis() + 2 * 60 * 60 * 1000
+                ),
+            };
+            setPro(updatedPro);
+        }
+    }, []);
+    console.log(pro);
     const handleFormSubmit = () => {
+        const random = Math.floor(Math.random() * 1000000);
+        const randomStt = random.toString().padStart(6, "0");
+
         setPro({
             ...pro,
+            stt: randomStt,
             grantTime: currentTime,
             exp: firebase.firestore.Timestamp.fromMillis(
                 currentTime.toMillis() + 2 * 60 * 60 * 1000
@@ -118,18 +141,9 @@ function AddPro() {
 
     const handleCheck = () => {
         if (isLoggedIn === "true") {
-            const updatedPro = {
-                ...pro,
-                name: user.fullName,
-                phone: user.phone,
-                email: user.email,
-                grantTime: currentTime,
-                exp: firebase.firestore.Timestamp.fromMillis(
-                    currentTime.toMillis() + 2 * 60 * 60 * 1000
-                ),
-            };
-            setPro(updatedPro);
             setModalPro(true);
+            dispatch(createProgressive(pro as any) as any);
+            dispatch(createUserLog(userLog) as any);
         } else {
             setModalForm(true);
         }
@@ -513,7 +527,7 @@ function AddPro() {
                                             Số thứ tự được cấp
                                         </h2>
                                         <h1 className=" text-6xl font-extrabold leading-10 my-10 mainColor">
-                                            43978434
+                                            {pro.stt}
                                         </h1>
 
                                         <h4 className=" text-lg font-normal leading-7">

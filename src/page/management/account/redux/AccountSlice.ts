@@ -13,7 +13,7 @@ export interface AccountData {
     fullName: string;
     phone: string;
     email: string;
-    password?: string;
+    password: string;
     department?: string;
     status: string;
     update?: string | React.ReactNode;
