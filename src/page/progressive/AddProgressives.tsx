@@ -77,7 +77,33 @@ function AddPro() {
 
             if (userSnapshot.exists) {
                 const userData = userSnapshot.data() as any;
+                const random = Math.floor(Math.random() * 1000000);
+                const randomStt = random.toString().padStart(6, "0");
+                const updatedPro = {
+                    ...pro,
+                    stt: randomStt,
+                    name: userData.fullName,
+                    phone: userData.phone,
+                    email: userData.email,
+                    grantTime: currentTime,
+                    exp: firebase.firestore.Timestamp.fromMillis(
+                        currentTime.toMillis() + 2 * 60 * 60 * 1000
+                    ),
+                };
+                setPro(updatedPro);
                 setUser(userData);
+            } else {
+                const random = Math.floor(Math.random() * 1000000);
+                const randomStt = random.toString().padStart(6, "0");
+                const updatedPro = {
+                    ...pro,
+                    stt: randomStt,
+                    grantTime: currentTime,
+                    exp: firebase.firestore.Timestamp.fromMillis(
+                        currentTime.toMillis() + 2 * 60 * 60 * 1000
+                    ),
+                };
+                setPro(updatedPro);
             }
         };
         fetchUser();
@@ -102,38 +128,9 @@ function AddPro() {
         phone: "",
         email: "",
     });
+    console.log(user);
 
-    useEffect(() => {
-        if (isLoggedIn === "true") {
-            const random = Math.floor(Math.random() * 1000000);
-            const randomStt = random.toString().padStart(6, "0");
-            const updatedPro = {
-                ...pro,
-                stt: randomStt,
-                name: user.fullName,
-                phone: user.phone,
-                email: user.email,
-                grantTime: currentTime,
-                exp: firebase.firestore.Timestamp.fromMillis(
-                    currentTime.toMillis() + 2 * 60 * 60 * 1000
-                ),
-            };
-            setPro(updatedPro);
-        }
-    }, []);
-    console.log(pro);
     const handleFormSubmit = () => {
-        const random = Math.floor(Math.random() * 1000000);
-        const randomStt = random.toString().padStart(6, "0");
-
-        setPro({
-            ...pro,
-            stt: randomStt,
-            grantTime: currentTime,
-            exp: firebase.firestore.Timestamp.fromMillis(
-                currentTime.toMillis() + 2 * 60 * 60 * 1000
-            ),
-        });
         dispatch(createProgressive(pro as any) as any);
         dispatch(createUserLog(userLog) as any);
         setModalPro(true);
@@ -148,7 +145,7 @@ function AddPro() {
             setModalForm(true);
         }
     };
-
+    console.log(pro);
     const grantTime = pro.grantTime.toDate();
     const exp = pro.exp.toDate();
     const isFormValid = pro.name && pro.phone && pro.email;

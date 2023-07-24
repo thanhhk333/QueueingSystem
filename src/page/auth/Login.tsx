@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 const Login: React.FC = () => {
     const dispatch = useDispatch();
     const [user, setUser] = useState({ username: "", password: "" });
+    const [errors, setErrors] = useState(false);
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
@@ -32,6 +33,7 @@ const Login: React.FC = () => {
                 localStorage.setItem("isLoggedIn", "true");
             } else {
                 console.log("Tài khoản hoặc mật khẩu không đúng!");
+                setErrors(true);
             }
         } catch (error) {
             console.log(error);
@@ -103,6 +105,19 @@ const Login: React.FC = () => {
                                     </Form.Item>
                                 </div>
                                 <div className="row">
+                                    {errors === true ? (
+                                        <div className="col-12 text-center ">
+                                            <Typography.Text
+                                                type="danger"
+                                                className="text-center"
+                                            >
+                                                Tài khoản hoặc mật khẩu không
+                                                đúng!
+                                            </Typography.Text>
+                                        </div>
+                                    ) : (
+                                        ""
+                                    )}
                                     <Link
                                         to="/forget-password"
                                         className="text-[red] justify-start p-0 ml-16 mb-2"
