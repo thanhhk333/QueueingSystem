@@ -24,6 +24,7 @@ function ListRole() {
     const roleManagementData = useSelector(
         (state: RootState) => state.roleManagement.data
     );
+    console.log(roleManagementData);
 
     useEffect(() => {
         dispatch(fetchRoleManagement() as any);
